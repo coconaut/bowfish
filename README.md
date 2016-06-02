@@ -59,5 +59,9 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
   2. Import bowfish in your module.
 
-## Never stop piping...
+## License
+
+This really doesn't merit one... but in case that's some kind of sticking point: MIT.
+
+## Never stop piping... never stop...
 
