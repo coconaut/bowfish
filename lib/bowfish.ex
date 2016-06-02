@@ -42,8 +42,8 @@ defmodule Bowfish do
       iex> >>> add.(1, :_, 40) 
       iex> |> Integer.to_string() 
       iex> |> String.codepoints()
-      iex> >>> Enum.concat(:_, ["2","1"])
       iex> |> Enum.reverse()
+      iex> >>> Enum.concat(["1","2"], :_)
       ["1","2","3","4"]
   """
   defmacro left >>> right do

@@ -40,8 +40,8 @@ add = fn (a, b, c) -> a + b + c end
 >>> add.(1, :_, 40) 
 |> Integer.to_string() 
 |> String.codepoints()
->>> Enum.concat(:_, ["2","1"])
 |> Enum.reverse()
+>>> Enum.concat(["1","2"], :_)
 # ["1","2","3","4"]
 ```
 
