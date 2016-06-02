@@ -47,14 +47,12 @@ add = fn (a, b, c) -> a + b + c end
 
 ## Installation
 
-(NOT YET IN HEX!)
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+Available in hex. The package can be installed as:
 
   1. Add bowfish to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:bowfish, "~> 0.0.1"}]
+          [{:bowfish, "~> 0.1.0"}]
         end
 
   2. Import bowfish in your module.
