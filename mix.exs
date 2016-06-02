@@ -7,19 +7,35 @@ defmodule Bowfish.Mixfile do
     [app: :bowfish,
      version: @version,
      elixir: "~> 1.2",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+     description: description,
+     package: package
+
+    ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    []
   end
 
   defp deps do
     []
+  end
+
+  defp description do
+    """
+    A fun, positional pipe operator macro >>> for when piping to the first arg just won't cut it.
+    """
+  end
+
+  defp package do
+    [
+     name: :bowfish,
+     maintainers: ["Alexander Barry"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/coconaut/bowfish"}]
   end
 end
