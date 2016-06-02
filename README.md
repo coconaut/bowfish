@@ -1,8 +1,12 @@
 # Bowfish
 
-**TODO: Add description**
+A fun, positional pipe operator, for when the first arg just won't cut it.
+Bowfish, or >>>, is implemented as a macro.
+It makes use of the Macro.pipe function called by the standard forward pipe operator (|>)
 
 ## Installation
+
+(NOT YET IN HEX!)
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 

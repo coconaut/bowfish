@@ -10,25 +10,54 @@ defmodule Bowfish do
 
   ## Examples
 
+      # a trivial example -> you'd really just use "|>" here
       iex> import Bowfish
-      nil
+      iex> "bowfish" >>> String.upcase(:_)
+      "BOWFISH"
 
-      fn x -> x + 1 end 
-      >>> Enum.map([1, 2, 3], :_)
+      # piping to functions
+      iex> defmodule Test do
+      iex>   def div(a, b), do: a / b
+      iex> end
+      iex> import Bowfish
+      iex> 4 >>> Test.div(1, :_)
+      0.25
 
+      # using with an anonymous function
+      iex> import Bowfish
+      iex> add = fn (a, b) -> a + b end
+      iex> 5 >>> add.(1, :_)
+      6
+
+      # using in a chain
+      iex> import Bowfish
+      iex> add = fn (a, b, c) -> a + b + c end
+      iex> 1 >>> add.(1, 0, :_) >>> Integer.to_string(16, :_)
+      "10000"
+
+      # using with the forward pipe operator
+      iex> import Bowfish
+      iex> add = fn (a, b, c) -> a + b + c end
+      iex> 2 
+      iex> >>> add.(1, :_, 40) 
+      iex> |> Integer.to_string() 
+      iex> |> String.codepoints()
+      iex> >>> Enum.concat(:_, ["2","1"])
+      iex> |> Enum.reverse()
+      ["1","2","3","4"]
   """
   defmacro left >>> right do
   	bowfish(left, right)
   end
 
-  def bowfish(expr, {call, line, args} = call_args) when is_list(args) do
+  def bowfish(expr, {call, line, args}) when is_list(args) do
   	case Enum.find_index(args, fn x -> x == :_ end) do
-      nil -> raise ArgumentError, "Unable to determine index of ':_'"
+      nil -> raise ArgumentError, "unable to determine index of ':_'"
       idx -> Macro.pipe(expr, {call, line, List.delete_at(args, idx)}, idx)
     end
   end
 
-  def bowfish(_) do
+  def bowfish(expr, _) do
     raise ArgumentError, "cannot pipe to a function that doesn't expect a list of args"
   end
 end
