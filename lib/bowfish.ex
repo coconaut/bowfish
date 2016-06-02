@@ -57,7 +57,7 @@ defmodule Bowfish do
     end
   end
 
-  def bowfish(expr, _) do
+  def bowfish(_expr, _) do
     raise ArgumentError, "cannot pipe to a function that doesn't expect a list of args"
   end
 end
